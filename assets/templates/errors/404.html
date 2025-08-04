@@ -1,0 +1,169 @@
+{% extends "partials/base.html" %}
+
+{% block title %}
+    {{ title }} - EcoTrace
+{% endblock %}
+
+<!-- Section head -->
+{% block section_head %}
+    <section class="w-full bg-gradient-to-br from-emerald-100 via-teal-50 to-cyan-50 relative overflow-hidden">
+        <!-- Forme décorative en arrière-plan -->
+        <div class="absolute inset-0 opacity-15">
+            <div class="absolute top-0 left-0 w-80 h-80 bg-gradient-to-r from-emerald-300 to-teal-400 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
+            <div class="absolute bottom-0 right-0 w-64 h-64 bg-gradient-to-r from-teal-300 to-cyan-400 rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2"></div>
+        </div>
+        
+        <div class="max-w-screen-xl px-3 sm:px-6 mx-auto relative z-10">
+            <div class="flex items-center justify-between py-16">
+                <div class="flex flex-col gap-6">
+                    
+                    <h1 class="text-5xl font-black bg-gradient-to-r from-emerald-700 via-teal-600 to-cyan-600 bg-clip-text text-transparent">
+                        Page introuvable
+                    </h1>
+                    <p class="text-xl text-gray-700 max-w-2xl leading-relaxed">
+                        Oups ! Il semblerait que cette page ait pris un chemin plus écologique et ait disparu de nos serveurs.
+                    </p>
+                    <div class="flex items-center space-x-3 mt-4">
+                        <div class="flex -space-x-2">
+                            <div class="w-8 h-8 rounded-full bg-gradient-to-r from-red-400 to-red-500 border-2 border-white flex items-center justify-center">
+                                <span class="text-xs text-white font-bold">!</span>
+                            </div>
+                            <div class="w-8 h-8 rounded-full bg-gradient-to-r from-yellow-400 to-yellow-500 border-2 border-white flex items-center justify-center">
+                                <span class="text-xs text-white font-bold">?</span>
+                            </div>
+                            <div class="w-8 h-8 rounded-full bg-gradient-to-r from-emerald-400 to-emerald-500 border-2 border-white flex items-center justify-center">
+                                <span class="text-xs text-white font-bold">✓</span>
+                            </div>
+                        </div>
+                        <span class="text-sm text-gray-600 font-medium">Mais ne vous inquiétez pas, nous sommes là pour vous aider</span>
+                    </div>
+                </div>
+                <div class="hidden lg:flex flex-col items-end space-y-4">
+                    <div class="bg-white/70 backdrop-blur-md rounded-2xl p-8 shadow-xl border border-white/20">
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-gradient-to-r from-red-400 to-red-500 rounded-2xl flex items-center justify-center shadow-lg mx-auto mb-4 animate-bounce-gentle">
+                                <svg fill="none" stroke="currentColor" class="w-10 h-10 text-white" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 0 1 5.656 0M9 12h6m-6 4h6m2 5H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5.586a1 1 0 0 1 .707.293l5.414 5.414a1 1 0 0 1 .293.707V19a2 2 0 0 1-2 2z"/></svg>
+                            </div>
+                            <div class="text-4xl font-bold text-red-600 mb-1">404</div>
+                            <div class="text-sm text-gray-600">Page non trouvée</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+        
+<!-- Section content -->
+{% block section_contents %}
+<section class="w-full py-20 bg-gradient-to-b from-gray-50 to-white">
+    <div class="max-w-screen-xl px-3 sm:px-6 mx-auto">
+        
+        <!-- Message principal -->
+        <div class="text-center mb-16">
+            <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-12 max-w-4xl mx-auto">
+                <div class="w-24 h-24 bg-gradient-to-r from-emerald-100 to-teal-100 rounded-full flex items-center justify-center mx-auto mb-8">
+                    <svg fill="none" stroke="currentColor" class="w-12 h-12 text-emerald-600" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-6-6m2-5a7 7 0 1 1-14 0 7 7 0 0 1 14 0z"/></svg>
+                </div>
+                
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">
+                    Ne perdons pas notre chemin vers la durabilité !
+                </h2>
+                
+                <p class="text-lg text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto">
+                    Cette page semble avoir migré vers un serveur plus écologique. Pendant que nous la retrouvons, 
+                    explorons d'autres façons de réduire votre empreinte carbone.
+                </p>
+
+                <!-- Actions principales -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+                    <a href="{{ url_for('carbon.index') }}" class="bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-8 py-4 rounded-xl font-bold hover:from-emerald-600 hover:to-teal-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center justify-center space-x-2">
+                        <svg fill="none" stroke="currentColor" class="w-5 h-5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m3 12 2-2m0 0 7-7 7 7M5 10v10a1 1 0 0 0 1 1h3m10-11 2 2m-2-2v10a1 1 0 0 1-1 1h-3m-6 0a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1m-6 0h6"/></svg>
+                        <span>Retour à l'accueil</span>
+                    </a>
+                    {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('auth.dashboard') }}" class="bg-white border-2 border-emerald-300 text-emerald-700 px-8 py-4 rounded-xl font-bold hover:bg-emerald-50 hover:border-emerald-400 transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center space-x-2">
+                        <svg fill="none" stroke="currentColor" class="w-5 h-5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2zm0 0V9a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v10m-6 0a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2m0 0V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2z"/></svg>
+                        <span>Mon tableau de bord</span>
+                    </a>
+                    {% else %}
+                    <a href="{{ url_for('auth.register') }}" class="bg-white border-2 border-emerald-300 text-emerald-700 px-8 py-4 rounded-xl font-bold hover:bg-emerald-50 hover:border-emerald-400 transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center space-x-2">
+                        <svg fill="none" stroke="currentColor" class="w-5 h-5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 1 1-8 0 4 4 0 0 1 8 0zM3 20a6 6 0 0 1 12 0v1H3v-1z"/></svg>
+                        <span>Commencer avec EcoTrace</span>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Pages populaires -->
+        <div class="text-center mb-12">
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">
+                Pages populaires
+            </h3>
+            <p class="text-lg text-gray-600">
+                Explorez ces sections populaires d'EcoTrace
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <!-- Page 1 -->
+            <a href="{{ url_for('carbon.index') }}" class="group bg-white rounded-2xl shadow-md border border-gray-100 p-8 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                <div class="w-16 h-16 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center shadow-lg mb-6 group-hover:scale-105 transition-transform duration-300">
+                    <svg fill="none" stroke="currentColor" class="w-8 h-8 text-white" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m3 12 2-2m0 0 7-7 7 7M5 10v10a1 1 0 0 0 1 1h3m10-11 2 2m-2-2v10a1 1 0 0 1-1 1h-3m-6 0a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1m-6 0h6"/></svg>
+                </div>
+                <h4 class="text-xl font-bold text-gray-900 mb-3">Accueil</h4>
+                <p class="text-gray-600 leading-relaxed">
+                    Découvrez EcoTrace et commencez votre parcours vers un mode de vie durable.
+                </p>
+            </a>
+
+            {% if current_user.is_authenticated %}
+            <!-- Page 2 - Dashboard -->
+            <a href="{{ url_for('auth.dashboard') }}" class="group bg-white rounded-2xl shadow-md border border-gray-100 p-8 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                <div class="w-16 h-16 bg-gradient-to-r from-teal-500 to-cyan-600 rounded-2xl flex items-center justify-center shadow-lg mb-6 group-hover:scale-105 transition-transform duration-300">
+                    <svg fill="none" stroke="currentColor" class="w-8 h-8 text-white" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2zm0 0V9a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v10m-6 0a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2m0 0V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2z"/></svg>
+                </div>
+                <h4 class="text-xl font-bold text-gray-900 mb-3">Tableau de bord</h4>
+                <p class="text-gray-600 leading-relaxed">
+                    Consultez vos statistiques et suivez vos progrès environnementaux.
+                </p>
+            </a>
+
+            <!-- Page 3 - Nouvelle activité -->
+            <a href="{{ url_for('carbon.add_activity') }}" class="group bg-white rounded-2xl shadow-md border border-gray-100 p-8 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                <div class="w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg mb-6 group-hover:scale-105 transition-transform duration-300">
+                    <svg fill="none" stroke="currentColor" class="w-8 h-8 text-white" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+                </div>
+                <h4 class="text-xl font-bold text-gray-900 mb-3">Nouvelle activité</h4>
+                <p class="text-gray-600 leading-relaxed">
+                    Enregistrez vos activités quotidiennes pour calculer votre empreinte carbone.
+                </p>
+            </a>
+            {% else %}
+            <!-- Page 2 - Connexion -->
+            <a href="{{ url_for('auth.login') }}" class="group bg-white rounded-2xl shadow-md border border-gray-100 p-8 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                <div class="w-16 h-16 bg-gradient-to-r from-teal-500 to-cyan-600 rounded-2xl flex items-center justify-center shadow-lg mb-6 group-hover:scale-105 transition-transform duration-300">
+                    <svg fill="none" stroke="currentColor" class="w-8 h-8 text-white" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m11 16-4-4m0 0 4-4m-4 4h14m-5 4v1a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h7a3 3 0 0 1 3 3v1"/></svg>
+                </div>
+                <h4 class="text-xl font-bold text-gray-900 mb-3">Connexion</h4>
+                <p class="text-gray-600 leading-relaxed">
+                    Connectez-vous à votre compte pour accéder à votre tableau de bord personnalisé.
+                </p>
+            </a>
+
+            <!-- Page 3 - Inscription -->
+            <a href="{{ url_for('auth.register') }}" class="group bg-white rounded-2xl shadow-md border border-gray-100 p-8 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                <div class="w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg mb-6 group-hover:scale-105 transition-transform duration-300">
+                    <svg fill="none" stroke="currentColor" class="w-8 h-8 text-white" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 1 1-8 0 4 4 0 0 1 8 0zM3 20a6 6 0 0 1 12 0v1H3v-1z"/></svg>
+                </div>
+                <h4 class="text-xl font-bold text-gray-900 mb-3">Inscription</h4>
+                <p class="text-gray-600 leading-relaxed">
+                    Créez votre compte gratuitement et commencez votre parcours écologique.
+                </p>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

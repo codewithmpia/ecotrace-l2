@@ -1,0 +1,320 @@
+{% extends "partials/base.html" %}
+
+{% block title %}
+    {{ title }} - ecotrace
+{% endblock %}
+
+<!-- Section head -->
+{% block section_head %}
+    <section class="w-full bg-gradient-to-br from-emerald-100 via-teal-50 to-cyan-50 relative overflow-hidden">
+        <!-- Forme décorative en arrière-plan -->
+        <div class="absolute inset-0 opacity-15">
+            <div class="absolute top-0 left-0 w-80 h-80 bg-gradient-to-r from-emerald-300 to-teal-400 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
+            <div class="absolute bottom-0 right-0 w-64 h-64 bg-gradient-to-r from-teal-300 to-cyan-400 rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2"></div>
+        </div>
+        
+        <div class="max-w-screen-xl px-6 mx-auto relative z-10">
+            <div class="flex items-center justify-between py-12">
+                <div class="flex flex-col gap-4">
+                    <h1 class="text-5xl font-black bg-gradient-to-r from-emerald-700 via-teal-600 to-cyan-600 bg-clip-text text-transparent">
+                        Tableau de bord
+                    </h1>
+                    <p class="text-lg text-gray-700 max-w-2xl leading-relaxed">
+                        Suivez vos progrès environnementaux et analysez votre impact carbone en temps réel
+                    </p>
+                    <div class="flex items-center space-x-3 mt-2">
+                        <div class="flex -space-x-2">
+                            <div class="w-7 h-7 rounded-full bg-gradient-to-r from-emerald-400 to-emerald-500 border-2 border-white"></div>
+                            <div class="w-7 h-7 rounded-full bg-gradient-to-r from-teal-400 to-teal-500 border-2 border-white"></div>
+                            <div class="w-7 h-7 rounded-full bg-gradient-to-r from-cyan-400 to-cyan-500 border-2 border-white"></div>
+                        </div>
+                        <span class="text-sm text-gray-600 font-medium">Tableau de bord personnalisé</span>
+                    </div>
+                </div>
+            
+                <div class="hidden lg:flex flex-col items-end space-y-4">
+                    <div class="bg-white/70 backdrop-blur-md rounded-2xl p-8 shadow-xl border border-white/20">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-gradient-to-r from-emerald-400 to-teal-500 rounded-2xl flex items-center justify-center shadow-lg mx-auto mb-4">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                                    </svg>
+                            </div>
+                            <div class="text-2xl font-bold text-emerald-600 mb-1">{{ user.name }}</div>
+                            <div class="text-sm text-gray-600">Heureux de vous revoir</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+        
+<!-- Section content -->
+{% block section_contents %}
+    <section class="min-h-screen w-full flex flex-col items-center justify-start px-4 py-10 bg-gradient-to-b from-gray-50 to-white">
+        
+        <div class="w-full max-w-screen-xl mx-auto space-y-8">
+            
+            <!-- Statistiques principales -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Total émissions -->
+                <div class="bg-white rounded-2xl shadow-md border border-gray-100 p-6 transform transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-gray-600 font-medium">Total mensuel</p>
+                            <p class="text-2xl font-bold text-gray-900" id="totalEmissions">-</p>
+                            <p class="text-xs text-gray-500">kgCO₂e</p>
+                        </div>
+                        <div class="w-12 h-12 bg-gradient-to-r from-red-500 to-rose-600 rounded-xl flex items-center justify-center shadow-lg">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Moyenne quotidienne -->
+                <div class="bg-white rounded-2xl shadow-md border border-gray-100 p-6 transform transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-gray-600 font-medium">Moyenne/jour</p>
+                            <p class="text-2xl font-bold text-gray-900" id="dailyAverage">-</p>
+                            <p class="text-xs text-gray-500">kgCO₂e</p>
+                        </div>
+                        <div class="w-12 h-12 bg-gradient-to-r from-orange-500 to-amber-600 rounded-xl flex items-center justify-center shadow-lg">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Catégorie principale -->
+                <div class="bg-white rounded-2xl shadow-md border border-gray-100 p-6 transform transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-gray-600 font-medium">Principale source</p>
+                            <p class="text-2xl font-bold text-gray-900" id="topCategory">-</p>
+                            <p class="text-xs text-gray-500" id="topCategoryValue">-</p>
+                        </div>
+                        <div class="w-12 h-12 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center shadow-lg">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Graphiques de visualisation -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Graphique par catégorie -->
+                <div class="bg-white rounded-2xl shadow-md border border-gray-100 p-6">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4">Répartition par catégorie</h3>
+                    <div class="relative h-64">
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Graphique évolution hebdomadaire -->
+                <div class="bg-white rounded-2xl shadow-md border border-gray-100 p-6">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4">Évolution cette semaine</h3>
+                    <div class="relative h-64">
+                        <canvas id="weeklyChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Comparaison mensuelle par catégorie -->
+                <div class="lg:col-span-2">
+                    <div class="bg-white rounded-2xl shadow-md border border-gray-100 p-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-4">Émissions par catégorie ce mois</h3>
+                        <div class="relative h-80">
+                            <canvas id="monthlyCategoryChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Actions rapides -->
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white rounded-2xl shadow-md border border-gray-100 p-6">
+                <div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Actions rapides</h3>
+                    <p class="text-sm text-gray-600">Gérez votre empreinte carbone efficacement</p>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <a href="{{ url_for('carbon.add_activity') }}" class="bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-6 py-3 rounded-xl font-bold hover:from-emerald-600 hover:to-teal-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center space-x-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                        </svg>
+                        <span>Nouvelle activité</span>
+                    </a>
+                    <a href="{{ url_for('carbon.history') }}" class="bg-white border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-xl font-bold hover:bg-gray-50 hover:border-gray-400 transition-all duration-300 shadow-md hover:shadow-lg flex items-center space-x-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                        </svg>
+                        <span>Voir l'historique</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Recommandations -->
+            <div class="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden">
+                <!-- En-tête simplifié -->
+                <div class="p-6 border-b border-gray-100">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center shadow-lg">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-900">Recommandations personnalisées</h3>
+                                <p class="text-sm text-gray-600 mt-1">{{ recommendations|length }} suggestions pour réduire votre impact</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Filtres harmonisés -->
+                        <div class="flex gap-2">
+                            <button class="px-3 py-2 bg-emerald-100 text-emerald-700 rounded-lg text-sm font-medium hover:bg-emerald-200 transition-colors duration-200 filter-btn active" data-filter="all">
+                                Toutes
+                            </button>
+                            <button class="px-3 py-2 bg-gray-100 text-gray-600 rounded-lg text-sm font-medium hover:bg-gray-200 transition-colors duration-200 filter-btn" data-filter="high-impact">
+                                Impact élevé
+                            </button>
+                            <button class="px-3 py-2 bg-gray-100 text-gray-600 rounded-lg text-sm font-medium hover:bg-gray-200 transition-colors duration-200 filter-btn" data-filter="easy">
+                                Facile
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Grille des recommandations -->
+                <div class="p-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="recommendations-grid">
+                        {% for recommendation in recommendations %}
+                        <div class="recommendation-card bg-white border border-gray-200 rounded-xl p-5 hover:border-emerald-200 hover:shadow-md hover:-translate-y-1 transition-all duration-300 transform" 
+                             data-impact="{{ recommendation.impact }}" 
+                             data-ease="{{ recommendation.ease }}">
+                            
+                            <!-- En-tête de la carte -->
+                            <div class="flex items-start justify-between mb-3">
+                                <h4 class="text-base font-semibold text-gray-900 flex-1 pr-4">
+                                    {{ recommendation.title }}
+                                </h4>
+                                
+                                <!-- Badges harmonisés -->
+                                <div class="flex flex-col gap-1">
+                                    {% if recommendation.impact == 'Élevé' %}
+                                    <span class="px-2 py-1 text-xs bg-red-100 text-red-700 rounded font-medium">
+                                        Impact élevé
+                                    </span>
+                                    {% else %}
+                                    <span class="px-2 py-1 text-xs bg-orange-100 text-orange-700 rounded font-medium">
+                                        Impact moyen
+                                    </span>
+                                    {% endif %}
+                                    
+                                    {% if recommendation.ease == 'Facile' %}
+                                    <span class="px-2 py-1 text-xs bg-green-100 text-green-700 rounded font-medium">
+                                        Facile
+                                    </span>
+                                    {% else %}
+                                    <span class="px-2 py-1 text-xs bg-yellow-100 text-yellow-700 rounded font-medium">
+                                        Moyen
+                                    </span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            
+                            <!-- Description -->
+                            <p class="text-sm text-gray-600 leading-relaxed">
+                                {{ recommendation.description }}
+                            </p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    
+                    <!-- Message si aucune recommandation -->
+                    <div id="no-recommendations" class="hidden text-center py-8">
+                        <p class="text-gray-500">Aucune recommandation ne correspond aux filtres sélectionnés.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profil utilisateur modernisé -->
+            <div class="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden">
+                <div class="p-6 border-b border-gray-100">
+                    <h3 class="text-lg font-bold text-gray-900">Profil utilisateur</h3>
+                    <p class="text-sm text-gray-600 mt-1">Informations de votre compte</p>
+                </div>
+                
+                <div class="divide-y divide-gray-100">
+                    <div class="p-6 hover:bg-gray-50 transition-colors duration-200">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-900">Nom</p>
+                                    <p class="text-sm text-gray-500">Votre nom complet</p>
+                                </div>
+                            </div>
+                            <span class="text-sm font-semibold text-gray-900">{{ user.name }}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6 hover:bg-gray-50 transition-colors duration-200">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-gradient-to-r from-purple-500 to-violet-600 rounded-lg flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-900">Email</p>
+                                    <p class="text-sm text-gray-500">Adresse de connexion</p>
+                                </div>
+                            </div>
+                            <span class="text-sm font-semibold text-gray-900">{{ user.email }}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6 hover:bg-gray-50 transition-colors duration-200">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-gradient-to-r from-green-500 to-emerald-600 rounded-lg flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a4 4 0 118 0v4m-4 8.5V19"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-900">Date d'inscription</p>
+                                    <p class="text-sm text-gray-500">Membre depuis</p>
+                                </div>
+                            </div>
+                            <span class="text-sm font-semibold text-gray-900">{{ user.created_at.strftime('%d/%m/%Y') }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+{% endblock %}
+
+{% block block_scripts %}
+    <!-- Chart.js -->
+    <script src="{{ url_for('static', filename='js/chart.min.js') }}"></script>
+    <script>
+        const categoriesData = {{ categories_data| safe }};
+        const weeklyData = {{ weekly_trend| safe }};
+        const monthlySummary = {{ monthly_summary| safe }};
+    </script>
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}
