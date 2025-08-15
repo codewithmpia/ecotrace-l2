@@ -19,7 +19,7 @@ from flask_login import (
 
 from configs.errors import get_form_errors
 from controllers.calculator import CarbonCalculator
-from controllers.recommentation import RecommendationEngine
+from controllers.recommendation import RecommendationEngine
 from carbon.models import EmissionFactor, Activity
 
 from .forms import (
